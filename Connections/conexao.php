@@ -3,7 +3,7 @@
 $hostname = 'localhost';
 $username = 'root';
 $pass = '';
-$database = 'snnoker';
+$database = 'snooker';
 $connection = mysql_connect($hostname, $username, $pass) or die ("Error in the database connection.");
 
 //Seleciona o banco de dados
