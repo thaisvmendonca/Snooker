@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 18-Mar-2017 às 21:07
+-- Generation Time: 18-Mar-2017 às 22:23
 -- Versão do servidor: 10.1.19-MariaDB
 -- PHP Version: 5.6.24
 
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `nome`, `email`, `senha`, `categoria`, `ativo`, `cadastro`) VALUES
-(1, 'Thais MendonÃ§a', 'thaisvmendonca@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'S', 'S', '2017-02-23 23:30:28'),
+(1, 'Thais MendonÃ§a', 'thaisvmendonca@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'S', 'S', '2017-03-18 21:12:46'),
 (2, 'Stella', 'stella@stella.com', '81dc9bdb52d04dc20036dbd8313ed055', 'A', 'S', '2017-02-23 23:02:46');
 
 -- --------------------------------------------------------
