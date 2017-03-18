@@ -99,4 +99,21 @@ if (isset($_GET["view"])) {
 	}
 }
 
+// GERENCIAR RESERVAS
+if (isset($_GET["reserve"])) {
+	$reserve = $_GET['reserve'];
+	$id_reserva = $_GET['id'];
+
+	// update
+	$query = "UPDATE reserva SET status='$reserve' WHERE id_reserva='$id_reserva'";
+	// Executa a query
+	$inserir = mysql_query($query);
+	if ($inserir) {
+		//Redireciona
+		echo "<script>location.href='index.php';</script>";
+	} else {
+		echo "<script>location.href='index.php?update=erro';</script>";
+	}
+}
+
 ?>

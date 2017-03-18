@@ -9,8 +9,8 @@ $row_product = mysql_fetch_assoc($result_product);
 $totalRows_product = mysql_num_rows($result_product);
 
 //Seleciona reservas
-$date = date('Y-m-d');
-$sql = "SELECT id_reserva, nome, email, telefone, data_reserva FROM reserva WHERE data_reserva>='$date'";
+$date = date('d-m-Y');
+$sql = "SELECT * FROM reserva WHERE data_reserva>='$date'";
 $result_reserve = mysql_query($sql,$connection) or die ("Error in table selection.");
 $row_reserve = mysql_fetch_assoc($result_reserve);
 $totalRows_reserve = mysql_num_rows($result_reserve);
@@ -26,7 +26,7 @@ $row_view_prices = mysql_fetch_assoc($result_view_prices);
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard - Snnoker!</title>
+  <title>Dashboard - Snooker!</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -98,61 +98,127 @@ $row_view_prices = mysql_fetch_assoc($result_view_prices);
                     }
                     ?>
                     <span class="fa fa-caret-down"></span></button>
-                  <ul class="dropdown-menu">
-                    <li><a href="updates.php?view=S">Sim</a></li>
-                    <li><a href="updates.php?view=N">Não</a></li>
-                  </ul>
+                    <ul class="dropdown-menu">
+                      <li><a href="updates.php?view=S">Sim</a></li>
+                      <li><a href="updates.php?view=N">Não</a></li>
+                    </ul>
+                  </div>
                 </div>
+                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box-content -->
+              <!-- /.info-box -->
             </div>
-            <!-- /.info-box -->
+            <!-- /.col -->
+
           </div>
-          <!-- /.col -->
 
-        </div>
+          <!-- Box page  -->
+          <div class="box">
+            <div class="box-body">
+
+              <?php if ($totalRows_reserve>0){ ?>
+
+                <table id="example1" class="table table-bordered table-hover table-responsive">
+                  <thead>
+                    <tr>
+                      <th class="text-center">id</th>
+                      <th class="text-center">Nome</th>
+                      <th class="text-center">E-mail</th>
+                      <th class="text-center">Telefone</th>
+                      <th class="text-center">Mensagem</th>
+                      <th class="text-center">Data/hora</th>
+                      <th class="text-center">Nº de pessoas</th>
+                      <th class="text-center">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php do { ?>
+                      <tr>
+                        <td class="text-center"><?php echo $row_reserve['id_reserva']; ?></td>
+                        <td class="text-center"><?php echo $row_reserve['nome']; ?></td>
+                        <td class="text-center"><?php echo $row_reserve['email']; ?></td>
+                        <td class="text-center"><?php echo $row_reserve['telefone']; ?></td>
+                        <td class="text-center"><?php echo $row_reserve['mensagem']; ?></td>
+                        <td class="text-center"><?php echo $row_reserve['data_reserva']; ?> às <?php echo $row_reserve['horario']; ?></td>
+                        <td class="text-center"><?php echo $row_reserve['n_pessoas']; ?></td>
+                        <td class="text-center">
+                          <div class="input-group-btn">
+                            <?php if($row_reserve['status']==1){ ?>
+                              <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                                Pendente
+                                <?php }
+                                else if($row_reserve['status']==2){ ?>
+                                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                    Confirmado
+                                    <?php }
+                                    else if($row_reserve['status']==3){ ?>
+                                      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                        Cancelado
+                                        <?php }
+                                        ?>
+                                        <span class="fa fa-caret-down"></span></button>
+                                        <ul class="dropdown-menu">
+                                          <li><a href="updates.php?reserve=1&id=<?php echo $row_reserve['id_reserva']; ?>">Pendente</a></li>
+                                          <li><a href="updates.php?reserve=2&id=<?php echo $row_reserve['id_reserva']; ?>">Confirmar</a></li>
+                                          <li><a href="updates.php?reserve=3&id=<?php echo $row_reserve['id_reserva']; ?>">Cancelar</a></li>
+                                        </ul>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <?php } while ($row_reserve = mysql_fetch_assoc($result_reserve)); ?>
+                                </tbody>
+                              </table>
+                              <?php }
+                              else{ ?>
+                                <div class="text-center">
+                                  <h3>Nenhuma reserva foi solicitada ainda.</h3>
+                                </div>
+                                <?php }?>
+                              </div>
+                              <!-- /.box-body -->
+                            </div>
 
 
-        <!-- /.row -->
-      </section>
-      <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+                            <!-- /.row -->
+                          </section>
+                          <!-- /.content -->
+                        </div>
+                        <!-- /.content-wrapper -->
 
-    <?php include 'footer.php'; ?>
+                        <?php include 'footer.php'; ?>
 
-  </div>
-  <!-- ./wrapper -->
+                      </div>
+                      <!-- ./wrapper -->
 
-  <!-- jQuery 2.2.3 -->
-  <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-  <!-- Bootstrap 3.3.6 -->
-  <script src="bootstrap/js/bootstrap.min.js"></script>
-  <!-- FastClick -->
-  <script src="plugins/fastclick/fastclick.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/app.min.js"></script>
-  <!-- Sparkline -->
-  <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
-  <!-- SlimScroll 1.3.0 -->
-  <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
-  <!-- DataTables -->
-  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-  <script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-  </script>
-</body>
-</html>
+                      <!-- jQuery 2.2.3 -->
+                      <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+                      <!-- Bootstrap 3.3.6 -->
+                      <script src="bootstrap/js/bootstrap.min.js"></script>
+                      <!-- FastClick -->
+                      <script src="plugins/fastclick/fastclick.js"></script>
+                      <!-- AdminLTE App -->
+                      <script src="dist/js/app.min.js"></script>
+                      <!-- Sparkline -->
+                      <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
+                      <!-- SlimScroll 1.3.0 -->
+                      <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+                      <!-- AdminLTE for demo purposes -->
+                      <script src="dist/js/demo.js"></script>
+                      <!-- DataTables -->
+                      <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+                      <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+                      <script>
+                      $(function () {
+                        $("#example1").DataTable();
+                        $('#example2').DataTable({
+                          "paging": true,
+                          "lengthChange": false,
+                          "searching": false,
+                          "ordering": true,
+                          "info": true,
+                          "autoWidth": false
+                        });
+                      });
+                      </script>
+                    </body>
+                    </html>

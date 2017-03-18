@@ -24,6 +24,8 @@ $row_view = mysql_fetch_assoc($result_view);
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="admin/plugins/datepicker/datepicker3.css">
 
 </head>
 <body>
@@ -84,40 +86,7 @@ $row_view = mysql_fetch_assoc($result_view);
     </div>
   </section>
   <!--/about-->
-  <!-- event -->
-  <section id="event">
-    <div class="bg-color" class="section-padding">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 text-center" style="padding:60px;">
-            <h1 class="header-h">Próximo evento</h1>
-          </div>
-          <div class="col-md-12" style="padding-bottom:60px;">
-            <div class="item active left">
-              <div class="col-md-6 col-sm-6 left-images">
-                <img src="img/res02.jpg" class="img-responsive">
-              </div>
-              <div class="col-md-6 col-sm-6 details-text">
-                <div class="content-holder">
-                  <h2>Nome do evento</h2>
-                  <p>Descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição.</p>
-                  <address>
-                    <strong>Local: </strong>
-                    Snooker Sport Pub
-                    <br>
-                    <strong>Horário: </strong>
-                    20:30
-                  </address>
-                  <a class="btn btn-imfo btn-read-more" href="events-details.html">Ver mais eventos</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--/ event -->
+
   <!-- menu -->
   <section id="cardapio" class="section-padding">
     <div class="container">
@@ -154,147 +123,185 @@ $row_view = mysql_fetch_assoc($result_view);
                 <a class="menu-title" href="#" data-meal-img="assets/img/restaurant/rib.jpg"><?php echo $row_product['nome']; ?></a>
                 <span style="left: 166px; right: 44px;" class="menu-line"></span>
                 <?php if($row_view['exibir']=='S'){ ?>
-                    <span class="menu-price"><?php echo $row_product['preco']; ?></span>
-                <?php } ?>
-              </span>
-              <span class="menu-subtitle"><?php echo $row_product['descricao']; ?></span>
-            </div>
-            <?php } while ($row_product = mysql_fetch_assoc($result_product)); ?>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--/ menu -->
-  <!-- contact -->
-  <section id="reserva" class="section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h1 class="header-h">Reserva de mesa</h1>
-          </div>
-        </div>
-        <div class="row msg-row">
-          <div class="col-md-4 col-sm-4 mr-15">
-            <div class="media-2">
-              <div class="media-left">
-                <div class="contact-phone bg-1 text-center"><span class="phone-in-talk fa fa-phone"></span></div>
+                  <span class="menu-price"><?php echo $row_product['preco']; ?></span>
+                  <?php } ?>
+                </span>
+                <span class="menu-subtitle"><?php echo $row_product['descricao']; ?></span>
               </div>
-              <div class="media-body">
-                <h4 class="dark-blue regular">Telefone</h4>
-                <p class="light-blue regular alt-p">(35) 9 9999-9999</p>
-              </div>
-            </div>
-            <div class="media-2">
-              <div class="media-left">
-                <div class="contact-email bg-14 text-center"><span class="hour-icon fa fa-clock-o"></span></div>
-              </div>
-              <div class="media-body">
-                <h4 class="dark-blue regular">Horários de funcionamento</h4>
-                <p class="light-blue regular alt-p"> Quinta a Sábado 19:00 - 01:00</p>
-                <p class="light-blue regular alt-p">
-                  Domingo 16:30 - 23.00
-                </p>
-              </div>
+              <?php } while ($row_product = mysql_fetch_assoc($result_product)); ?>
             </div>
           </div>
-          <div class="col-md-8 col-sm-8">
-            <form action="" method="post" role="form" class="contactForm">
-              <div id="sendmessage">Your booking request has been sent. Thank you!</div>
-              <div id="errormessage"></div>
-              <div class="col-md-6 col-sm-6 contact-form pad-form">
-                <div class="form-group label-floating is-empty">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Seu nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validation"></div>
+        </div>
+      </section>
+      <!--/ menu -->
+      <!-- contact -->
+      <section id="reserva" class="section-padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h1 class="header-h">Reserva de mesa</h1>
+            </div>
+          </div>
+          <div class="row msg-row">
+            <div class="col-md-4 col-sm-4 mr-15">
+              <div class="media-2">
+                <div class="media-left">
+                  <div class="contact-phone bg-1 text-center"><span class="phone-in-talk fa fa-phone"></span></div>
+                </div>
+                <div class="media-body">
+                  <h4 class="dark-blue regular">Telefone</h4>
+                  <p class="light-blue regular alt-p">(35) 9 9999-9999</p>
+                </div>
+              </div>
+              <div class="media-2">
+                <div class="media-left">
+                  <div class="contact-email bg-14 text-center"><span class="hour-icon fa fa-clock-o"></span></div>
+                </div>
+                <div class="media-body">
+                  <h4 class="dark-blue regular">Horários de funcionamento</h4>
+                  <p class="light-blue regular alt-p"> Quinta a Sábado 19:00 - 01:00</p>
+                  <p class="light-blue regular alt-p">
+                    Domingo 16:30 - 23.00
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 col-sm-8">
+              <form action="insert_reserva.php" method="post" role="form" class="contactForm">
+                <div id="sendmessage">Your booking request has been sent. Thank you!</div>
+                <div id="errormessage"></div>
+                <div class="col-md-6 col-sm-6 contact-form pad-form">
+                  <div class="form-group label-floating is-empty">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Seu nome" required />
+                  </div>
+
+                </div>
+                <div class="col-md-6 col-sm-6 contact-form">
+                  <div class="form-group">
+                    <input type="text" class="form-control label-floating is-empty" name="date_reserve" id="datepicker" placeholder="Data" value="<?php echo date('d/m/Y'); ?>" required />
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 contact-form pad-form">
+                  <div class="form-group">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Seu E-mail" required />
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 contact-form">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="time" id="time" placeholder="Horário de chegada" required />
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 contact-form">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="phone" placeholder="Telefone" id="txttelefone" required />
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 contact-form">
+                  <div class="form-group">
+                    Mesa para quantas pessoas?
+                    <select name="people">
+                      <option value="1">1 pessoa</option>
+                      <option value="2">2 pessoas</option>
+                      <option value="3">3 pessoas</option>
+                      <option value="4">4 pessoas</option>
+                      <option value="5">5 pessoas</option>
+                      <option value="6">6 pessoas</option>
+                      <option value="7">7 pessoas</option>
+                      <option value="8">8 pessoas</option>
+                      <option value="9">9 pessoas</option>
+                      <option value="10">10 pessoas</option>
+                      <option value="11">11 pessoas</option>
+                      <option value="12">12 pessoas</option>
+                      <option value="13">13 pessoas</option>
+                      <option value="14">14 pessoas</option>
+                      <option value="15">15 pessoas</option>
+                      <option value="16">16 pessoas</option>
+                      <option value="17">17 pessoas</option>
+                      <option value="18">18 pessoas</option>
+                      <option value="19">19 pessoas</option>
+                      <option value="20">20 pessoas</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-12 contact-form">
+                  <div class="form-group label-floating is-empty">
+                    <textarea class="form-control" name="message" rows="5" rows="3" placeholder="Mensagem"></textarea>
+                  </div>
                 </div>
 
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form">
-                <div class="form-group">
-                  <input type="date" class="form-control label-floating is-empty" name="date" id="date" placeholder="Data" data-rule="required" data-msg="This field is required" />
-                  <div class="validation"></div>
-                </div>
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form pad-form">
-                <div class="form-group">
-                  <input type="email" class="form-control label-floating is-empty" name="email" id="email" placeholder="Seu E-mail" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validation"></div>
-                </div>
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form">
-                <div class="form-group">
-                  <input type="time" class="form-control label-floating is-empty" name="time" id="time" placeholder="Horário de chegada" data-rule="required" data-msg="This field is required" />
-                  <div class="validation"></div>
-                </div>
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form">
-                <div class="form-group">
-                  <input type="text" class="form-control label-floating is-empty" name="phone" id="phone" placeholder="Telefone" data-rule="required" data-msg="This field is required" />
-                  <div class="validation"></div>
-                </div>
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form">
-                <div class="form-group">
-                  <input type="text" class="form-control label-floating is-empty" name="people" id="people" placeholder="Nº de pessoas" data-rule="required" data-msg="This field is required" />
-                  <div class="validation"></div>
-                </div>
-              </div>
-              <div class="col-md-12 contact-form">
-                <div class="form-group label-floating is-empty">
-                  <textarea class="form-control" name="message" rows="5" rows="3" data-rule="required" data-msg="Please write something for us" placeholder="Mensagem"></textarea>
-                  <div class="validation"></div>
-                </div>
+                <input type="hidden" name="insert" value="insert_reserve">
 
-              </div>
-              <div class="col-md-12 btnpad">
-                <div class="contacts-btn-pad">
-                  <button class="contacts-btn">Reservar</button>
+                <div class="col-md-12 btnpad">
+                  <div class="contacts-btn-pad">
+                    <button type="submit" class="contacts-btn">Reservar</button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- / contact -->
+      <!-- footer -->
+      <footer class="footer text-center">
+        <div class="footer-top">
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6 text-center">
+              <div class="widget">
+                <img src="img/snooker-footer.png" class="widget-title">
+                <address>
+                  Rua Barão do Rio Branco 182<br/>
+                  Lavras-MG 37200-000
+                </address>
+                <div class="social-list">
+                  <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </div>
+                <p class="copyright clear-float">
+                  © Snooker Sport Pub. Todos os direitos reservados.
+                  <div class="credits">
+                    <!--
+                    All the links in the footer should remain intact.
+                    You can delete the links only if you purchased the pro version.
+                    Licensing information: https://bootstrapmade.com/license/
+                    Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Delicious
+                  -->
+                  <!-- Designed by <a href="https://bootstrapmade.com/">Free Bootstrap Themes</a> -->
+                </div>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- / contact -->
-    <!-- footer -->
-    <footer class="footer text-center">
-      <div class="footer-top">
-        <div class="row">
-          <div class="col-md-offset-3 col-md-6 text-center">
-            <div class="widget">
-              <img src="img/snooker-footer.png" class="widget-title">
-              <address>
-                Rua Barão do Rio Branco 182<br/>
-                Lavras-MG 37200-000
-              </address>
-              <div class="social-list">
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              </div>
-              <p class="copyright clear-float">
-                © Snooker Sport Pub. Todos os direitos reservados.
-                <div class="credits">
-                  <!--
-                  All the links in the footer should remain intact.
-                  You can delete the links only if you purchased the pro version.
-                  Licensing information: https://bootstrapmade.com/license/
-                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Delicious
-                -->
-                <!-- Designed by <a href="https://bootstrapmade.com/">Free Bootstrap Themes</a> -->
-              </div>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- / footer -->
+    </footer>
+    <!-- / footer -->
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.easing.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.mixitup.min.js"></script>
-  <script src="js/custom.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.mixitup.min.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- bootstrap datepicker -->
+    <script src="admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- InputMask -->
+    <script src="admin/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="admin/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
-</body>
-</html>
+    <script type="text/javascript" src="admin/plugins/jquery.mask.min.js"/></script>
+
+    <script>
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy',
+      language: 'pt-BR'
+    });
+    </script>
+
+    <script type="text/javascript">
+    $("#txttelefone").mask("(00) 00009-0000");
+    $("#time").mask("00:00");
+    </script>
+
+  </body>
+  </html>
