@@ -110,7 +110,7 @@ if (isset($_GET["reserve"])) {
 	$inserir = mysql_query($query);
 	if ($inserir) {
 		//Redireciona
-		echo "<script>location.href='index.php';</script>";
+		echo "<script>location.href='email_aviso.php?id_reserva=$id_reserva';</script>";
 	} else {
 		echo "<script>location.href='index.php?update=erro';</script>";
 	}

@@ -21,19 +21,20 @@ require_once('Connections/conexao.php');
 if ((isset($_POST["insert"])) && ($_POST["insert"] == "insert_reserve")) {
 	$name = $_POST['name'];
 	$name = addslashes($name);
-  $date_reserve = $_POST['date_reserve'];
+	$date_reserve = $_POST['date_reserve'];
 	$email = $_POST['email'];
 	$time = $_POST['time'];
-  $phone = $_POST['phone'];
-  $people = $_POST['people'];
-  $message = $_POST['message'];
+	$phone = $_POST['phone'];
+	$people = $_POST['people'];
+	$message = $_POST['message'];
 
 	$query = "INSERT INTO reserva (nome, email, telefone, data_reserva, horario, n_pessoas, mensagem, status) VALUES ('$name', '$email', '$phone', '$date_reserve', '$time', '$people', '$message', '1')";
 	// Executa a query
 	$inserir = mysql_query($query);
 	if ($inserir) {
 		//Redireciona
-		echo "<script>location.href='index.php?insert=success';</script>";
+		echo "<script>alert('Obrigado! Sua reserva foi solicitada, em breve iremos enviar uma confirmação para seu E-mail.');</script>";
+		echo "<script>location.href='index.php';</script>";
 	} else {
 		echo "<script>location.href='index.php?insert=erro';</script>";
 	}

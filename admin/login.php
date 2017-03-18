@@ -80,6 +80,7 @@ if ((isset($_POST["login"])) && ($_POST["login"] == "login")) {
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">Acesso restrito a equipe Snnoker!</p>
+      <!-- mensagem email ou senha digitados errados -->
       <?php if ((isset($_GET["login"])) && ($_GET["login"] == "erro")) { ?>
         <div class="alert alert-danger alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -87,6 +88,8 @@ if ((isset($_POST["login"])) && ($_POST["login"] == "login")) {
           Confira se digitou seu e-mail e senha corretamente e tente outra vez.
         </div>
         <?php } ?>
+
+        <!-- caso admin esteja bloqueado -->
         <?php if ((isset($_GET["admin"])) && ($_GET["admin"] == "blocked")) { ?>
           <div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -95,6 +98,7 @@ if ((isset($_POST["login"])) && ($_POST["login"] == "login")) {
           </div>
           <?php } ?>
 
+          <!-- esqueci senha: Email não encontrado -->
           <?php if ((isset($_GET["forget_password"])) && ($_GET["forget_password"] == "erro")) { ?>
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -102,7 +106,7 @@ if ((isset($_POST["login"])) && ($_POST["login"] == "login")) {
               Não encontramos nenhum cadastro vinculado ao e-mail <b><?php echo $_GET['email']; ?></b>.
             </div>
             <?php } ?>
-
+            <!-- esqueci senha: email encontrado, e mansagem enviada -->
             <?php if ((isset($_GET["forget_password"])) && ($_GET["forget_password"] == "success")) { ?>
               <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -111,40 +115,44 @@ if ((isset($_POST["login"])) && ($_POST["login"] == "login")) {
               </div>
               <?php } ?>
 
-          <form action="login.php" method="post">
-            <div class="form-group has-feedback">
-              <input type="email" class="form-control" name="email" placeholder="E-mail" required>
-              <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-              <input type="password" class="form-control" name="password" placeholder="Senha" required>
-              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-              <input type="hidden" name="login" value="login">
-            <button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-sign-in"></i> Entrar</button>
-          </form>
-          <br><br>
-          <a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Esqueci senha <i class="fa fa-frown-o"></i></a><br>
-          <div class="collapse" id="collapseExample">
-            <div class="well">
-              <form action="forget_password.php" method="post">
+              <!-- Formulario de Login -->
+              <form action="login.php" method="post">
                 <div class="form-group has-feedback">
-                  <label>Informe o e-mail cadastrado:</label>
                   <input type="email" class="form-control" name="email" placeholder="E-mail" required>
                   <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-send"></i> Enviar</button>
+                <div class="form-group has-feedback">
+                  <input type="password" class="form-control" name="password" placeholder="Senha" required>
+                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <input type="hidden" name="login" value="login">
+                <button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-sign-in"></i> Entrar</button>
               </form>
-            </div>
-          </div>
-        </div>
-        <!-- /.login-box-body -->
-      </div>
-      <!-- /.login-box -->
 
-      <!-- jQuery 2.2.3 -->
-      <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-      <!-- Bootstrap 3.3.6 -->
-      <script src="bootstrap/js/bootstrap.min.js"></script>
-    </body>
-    </html>
+              <br><br>
+
+              <a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Esqueci senha <i class="fa fa-frown-o"></i></a><br>
+              <div class="collapse" id="collapseExample">
+                <div class="well">
+                  <!-- Formulário esqueci senha -->
+                  <form action="forget_password.php" method="post">
+                    <div class="form-group has-feedback">
+                      <label>Informe o e-mail cadastrado:</label>
+                      <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-send"></i> Enviar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- /.login-box-body -->
+          </div>
+          <!-- /.login-box -->
+
+          <!-- jQuery 2.2.3 -->
+          <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+          <!-- Bootstrap 3.3.6 -->
+          <script src="bootstrap/js/bootstrap.min.js"></script>
+        </body>
+        </html>

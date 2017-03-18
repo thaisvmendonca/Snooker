@@ -37,9 +37,9 @@ $row_view = mysql_fetch_assoc($result_view);
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#historia">História</a>
-            <a href="#event">Eventos</a>
             <a href="#cardapio">Cardápio</a>
-            <a href="#reserva">Reservas</a>
+            <a href="#reserva">Reservar mesa</a>
+            <a href="#contato">Contato</a>
           </div>
           <!-- Use any element to open the sidenav -->
           <span onclick="openNav()" class="pull-right menu-icon">☰</span>
@@ -56,7 +56,7 @@ $row_view = mysql_fetch_assoc($result_view);
     </div>
   </section>
   <!-- / banner -->
-  <!--about-->
+  <!-- historia -->
   <section id="historia" class="section-padding">
     <div class="container">
       <div class="row">
@@ -85,9 +85,8 @@ $row_view = mysql_fetch_assoc($result_view);
       </div>
     </div>
   </section>
-  <!--/about-->
-
-  <!-- menu -->
+  <!--/historia-->
+  <!-- cardapio -->
   <section id="cardapio" class="section-padding">
     <div class="container">
       <div class="row">
@@ -133,8 +132,8 @@ $row_view = mysql_fetch_assoc($result_view);
           </div>
         </div>
       </section>
-      <!--/ menu -->
-      <!-- contact -->
+      <!--/ cardapio -->
+      <!-- reserva -->
       <section id="reserva" class="section-padding">
         <div class="container">
           <div class="row">
@@ -168,22 +167,20 @@ $row_view = mysql_fetch_assoc($result_view);
             </div>
             <div class="col-md-8 col-sm-8">
               <form action="insert_reserva.php" method="post" role="form" class="contactForm">
-                <div id="sendmessage">Your booking request has been sent. Thank you!</div>
-                <div id="errormessage"></div>
                 <div class="col-md-6 col-sm-6 contact-form pad-form">
                   <div class="form-group label-floating is-empty">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Seu nome" required />
+                    <input type="text" name="name" class="form-control" placeholder="Seu nome" required />
                   </div>
 
                 </div>
                 <div class="col-md-6 col-sm-6 contact-form">
                   <div class="form-group">
-                    <input type="text" class="form-control label-floating is-empty" name="date_reserve" id="datepicker" placeholder="Data" value="<?php echo date('d/m/Y'); ?>" required />
+                    <input type="text" class="form-control" name="date_reserve" id="datepicker" placeholder="Data" value="<?php echo date('d/m/Y'); ?>" required />
                   </div>
                 </div>
                 <div class="col-md-6 col-sm-6 contact-form pad-form">
                   <div class="form-group">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Seu E-mail" required />
+                    <input type="email" class="form-control" name="email" placeholder="Seu E-mail" required />
                   </div>
                 </div>
                 <div class="col-md-6 col-sm-6 contact-form">
@@ -224,7 +221,7 @@ $row_view = mysql_fetch_assoc($result_view);
                   </div>
                 </div>
                 <div class="col-md-12 contact-form">
-                  <div class="form-group label-floating is-empty">
+                  <div class="form-group">
                     <textarea class="form-control" name="message" rows="5" rows="3" placeholder="Mensagem"></textarea>
                   </div>
                 </div>
@@ -233,7 +230,53 @@ $row_view = mysql_fetch_assoc($result_view);
 
                 <div class="col-md-12 btnpad">
                   <div class="contacts-btn-pad">
-                    <button type="submit" class="contacts-btn">Reservar</button>
+                    <button type="submit" class="contacts-btn pull-right">Reservar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- / reserva -->
+      <!-- contato -->
+      <section id="contato" class="section-padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h1 class="header-h">Fale com a gente</h1>
+              <p class="header-p">Envie suas dúvidas, sugestões, elogios e reclamações.</p>
+            </div>
+          </div>
+          <div class="row msg-row">
+            <div class="col-md-6 col-md-offset-3">
+              <form action="send_email.php" method="post" role="form" class="contactForm">
+                <div class="contact-form pad-form">
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Seu nome" required />
+                  </div>
+                </div>
+                <div class="contact-form pad-form">
+                  <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Seu E-mail" required />
+                  </div>
+                </div>
+                <div class="contact-form pad-form">
+                  <div class="form-group">
+                    <input type="text" name="subject" class="form-control" placeholder="Assunto" required />
+                  </div>
+                </div>
+                <div class="col-md-12 contact-form">
+                  <div class="form-group">
+                    <textarea class="form-control" name="message" rows="5" rows="3" placeholder="Mensagem" required></textarea>
+                  </div>
+                </div>
+
+                <input type="hidden" name="insert" value="insert_reserve">
+
+                <div class="col-md-12 btnpad">
+                  <div class="contacts-btn-pad">
+                    <button type="submit" class="contacts-btn pull-right">Enviar</button>
                   </div>
                 </div>
               </form>

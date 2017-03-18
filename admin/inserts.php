@@ -21,7 +21,7 @@ include 'verification.php';
 //CADASTRO DE ADMIN
 if ((isset($_POST["insert"])) && ($_POST["insert"] == "insert_admin")) {
 	$name = $_POST['name'];
-	$name = addslashes($name);
+	$name = addslashes($name); // funcao que permite apostrofo
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
 	$category = $_POST['permission'];

@@ -52,7 +52,7 @@ include 'verification.php';
             <div class="box">
               <!-- /.box-header -->
                 <div class="box-body">
-                  <h3 class="text-center"><i class="fa fa-warning"></i> Você tentou acessar uma área que é restrita a Super administradores!</h3>
+                  <h3 class="text-center"><i class="fa fa-warning"></i> Você tentou acessar uma área que é restrita a Super administradores! Volte duas casas, danado. Hehe.</h3>
                 </div>
                 <!-- /.box-body -->
 
