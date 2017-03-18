@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 18-Mar-2017 às 19:04
+-- Generation Time: 18-Mar-2017 às 21:07
 -- Versão do servidor: 10.1.19-MariaDB
 -- PHP Version: 5.6.24
 
@@ -110,14 +110,6 @@ CREATE TABLE `reserva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `reserva`
---
-
-INSERT INTO `reserva` (`id_reserva`, `nome`, `email`, `telefone`, `data_reserva`, `horario`, `n_pessoas`, `mensagem`, `cadastro`, `admin_id_admin`, `status`) VALUES
-(1, 'Fernando Rocha', 'fhsrocha@gmail.com', '(29) 18423-4873', '18/03/2017', '20:00', 2, '', '2017-03-18 17:30:29', NULL, 2),
-(2, 'Tha', 'thaisvmendonca@gmail.com', '(12) 87372-4523', '18/03/2017', '22:00', 10, '', '2017-03-18 17:30:42', NULL, 2);
-
---
 -- Indexes for dumped tables
 --
 
@@ -159,7 +151,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
