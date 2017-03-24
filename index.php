@@ -297,8 +297,8 @@ $row_view = mysql_fetch_assoc($result_view);
                   Lavras-MG 37200-000
                 </address>
                 <div class="social-list">
-                  <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                  <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+    <a href="https://www.facebook.com/snookersportpub/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                  <a href="https://www.instagram.com/snookerlavras/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                 </div>
                 <p class="copyright clear-float">
                   © Snooker Sport Pub. Todos os direitos reservados.
